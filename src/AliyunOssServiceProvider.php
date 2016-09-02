@@ -28,8 +28,8 @@ class AliyunOssServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->singleton(AliyunOssService::class, function ($app) {
-            $configWechat = config('aliyun-oss');
-            return new WechatService($configWechat['appid'], $configWechat['secret'], \Cache::store());
+            $config = config('aliyun-oss');
+            return new AliyunOssService($config['access_id'], $config['access_key'], $config['endpoint'], $config['callback'], $config['bucket'], $config['cdn_endpoint'], $config['img_endpoint']);
         });
     }
 }

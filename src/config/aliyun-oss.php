@@ -7,5 +7,5 @@ return [
     'callback' => env('ALIYUN_OSS_CALLBACK'),
     'bucket' => env('ALIYUN_OSS_BUCKET'),
     'cdn_endpoint' => env('CDN_ENDPOINT',''),
-    'img_cdn_endpoint' => env('IMG_CDN_ENDPOINT',''),
+    'img_endpoint' => env('IMG_ENDPOINT',''),
 ];

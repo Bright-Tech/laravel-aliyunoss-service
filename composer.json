@@ -13,7 +13,7 @@
     "require": {
         "php": ">=5.4.0",
         "illuminate/support": "5.*",
-        "bright-tech/wechat-php-sdk": "*"
+        "bright-tech/aliyun-oss-sdk-php": "*"
     },
     "autoload": {
         "psr-4": {

@@ -1,7 +1,9 @@
 <?php
 namespace bright_tech\laravel\aliyun_oss;
 
-use bright_tech\wechat\Wechat;
+use OSS\OssClient;
+use OSS\OssPostClient;
+use OSS\OssUtilities;
 
 
 /**
@@ -12,58 +14,111 @@ use bright_tech\wechat\Wechat;
  */
 class AliyunOssService
 {
-    protected $wechat;
-    /**
-     *
-     * @var string
-     */
-    protected $appid = '';
 
     /**
      *
      * @var string
      */
-    protected $secret = '';
+    protected $accessId = '';
 
-    protected $cache;
+    /**
+     *
+     * @var string
+     */
+    protected $accessKey = '';
+
+    /**
+     * callback url
+     * @var string
+     */
+    public $callback;
+
+    /**
+     * 例如 bright-xyj.oss-cn-beijing.aliyuncs.com
+     * @var string
+     */
+    protected $endpoint;
+
+    /**
+     * bucket名称
+     * @var string
+     */
+    protected $bucket;
+
+    /**
+     * CDN域名,不使用CDN 不需设置
+     * @var string
+     */
+    protected $cdnEndpoint;
+
+    /**
+     * 图片服务域名,不使用图片服务不需设置
+     * 如果使用图片服务,则设置为图片服务的域名(使用CDN加速的请设置为图片CDN的域名)
+     * @var string
+     */
+    protected $imgEndpoint;
+
+    /**
+     * @var OssClient
+     */
+    protected $ossClient;
+
+    /**
+     * @var
+     */
+    protected $ossPostClient;
+
+    /**
+     * @var
+     */
+    protected $ossUtilities;
 
 
     /**
-     * WechatService constructor.
-     * @param string $appid
-     * @param string $secret
-     * @param \Illuminate\Contracts\Cache\Repository $cache
+     * AliyunOssService constructor.
+     *
+     * @param $accessId
+     * @param $accessKey
+     * @param $endpoint
+     * @param $callback
+     * @param $bucket
+     * @param string $cdnEndpoint CDN域名,不使用CDN 不需设置
+     * @param string $imgEndpoint 图片服务域名,不使用图片服务不需设置
      */
-    public function __construct($appid, $secret, \Illuminate\Contracts\Cache\Repository $cache)
+    public function __construct($accessId, $accessKey, $endpoint, $callback, $bucket, $cdnEndpoint = null, $imgEndpoint = null)
     {
-        $this->appid = $appid;
-        $this->secret = $secret;
-        $this->cache = $cache;
+        $this->accessId = $accessId;
+        $this->accessKey = $accessKey;
+        $this->endpoint = $endpoint;
+        $this->callback = $callback;
+        $this->bucket = $bucket;
+        $this->cdnEndpoint = $cdnEndpoint;
+        $this->imgEndpoint = $imgEndpoint;
     }
 
 
-    public function getAccessToken()
+    public function getOssClient()
     {
-        $cache = $this->cache;
-
-        if (!$cache->has('Wechat_AccessToken')) {
-            $result = $this->getWechatClient()->getAccessToken();
-            $cache->put('Wechat_AccessToken', $result->accessToken, $result->expiresIn / 60 - 5);
+        if (!$this->ossClient) {
+            $this->ossClient = new OssClient($this->accessId, $this->accessKey, $this->endpoint);
         }
-
-        return $cache->get('Wechat_AccessToken');
+        return $this->ossClient;
     }
 
-    /**
-     * @return Wechat
-     */
-    public function getWechatClient()
+    public function getOssPostClient()
     {
-        if (!$this->wechat) {
-            $this->wechat = new Wechat($this->appid, $this->secret);
+        if (!$this->ossPostClient) {
+            $this->ossPostClient = new OssPostClient($this->accessId, $this->accessKey, $this->endpoint);
         }
-        return $this->wechat;
+        return $this->ossPostClient;
     }
 
+    public function getOssUtilities()
+    {
+        if (!$this->ossUtilities) {
+            $this->ossUtilities = new OssUtilities($this->accessId, $this->accessKey, $this->endpoint);
+        }
+        return $this->ossUtilities;
+    }
 
 }

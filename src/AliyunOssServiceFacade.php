@@ -5,10 +5,8 @@ use Illuminate\Support\Facades\Facade;
 
 
 /**
- * Class WechatService
- * @package bright_tech\laravel\wechat
- *
- *
+ * Class AliyunOssServiceFacade
+ * @package bright_tech\laravel\aliyun_oss
  */
 class AliyunOssServiceFacade extends Facade
 {

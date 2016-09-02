@@ -1,8 +1,8 @@
 {
-    "name": "bright-tech/laravel-wechat-service",
+    "name": "bright-tech/laravel-aliyunoss-service",
     "description": "微信SDK laravel ",
     "type": "sdk",
-    "keywords": ["wechat","sdk","php","laravel"],
+    "keywords": ["aliyun","oss","sdk","php","laravel"],
     "license": "GNU GENERAL PUBLIC LICENSE",
     "authors": [
         {
@@ -17,7 +17,7 @@
     },
     "autoload": {
         "psr-4": {
-            "bright_tech\\laravel\\wechat\\": "src/"
+            "bright_tech\\laravel\\aliyun_oss\\": "src/"
         }
     }
 }

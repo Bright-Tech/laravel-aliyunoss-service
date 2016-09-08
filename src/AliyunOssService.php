@@ -108,7 +108,7 @@ class AliyunOssService
     public function getOssPostClient()
     {
         if (!$this->ossPostClient) {
-            $this->ossPostClient = new OssPostClient($this->accessId, $this->accessKey, $this->endpoint);
+            $this->ossPostClient = new OssPostClient($this->accessId, $this->accessKey, $this->callback);
         }
         return $this->ossPostClient;
     }
@@ -116,7 +116,7 @@ class AliyunOssService
     public function getOssUtilities()
     {
         if (!$this->ossUtilities) {
-            $this->ossUtilities = new OssUtilities($this->accessId, $this->accessKey, $this->endpoint);
+            $this->ossUtilities = new OssUtilities($this->endpoint, $this->bucket, $this->cdnEndpoint, $this->imgEndpoint);
         }
         return $this->ossUtilities;
     }

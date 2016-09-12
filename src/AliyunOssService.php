@@ -85,12 +85,11 @@ class AliyunOssService
      * @param string $cdnEndpoint CDN域名,不使用CDN 不需设置
      * @param string $imgEndpoint 图片服务域名,不使用图片服务不需设置
      */
-    public function __construct($accessId, $accessKey, $endpoint, $callback, $bucket, $cdnEndpoint = null, $imgEndpoint = null)
+    public function __construct($accessId, $accessKey, $endpoint, $bucket, $cdnEndpoint = null, $imgEndpoint = null)
     {
         $this->accessId = $accessId;
         $this->accessKey = $accessKey;
         $this->endpoint = $endpoint;
-        $this->callback = $callback;
         $this->bucket = $bucket;
         $this->cdnEndpoint = $cdnEndpoint;
         $this->imgEndpoint = $imgEndpoint;
@@ -108,7 +107,7 @@ class AliyunOssService
     public function getOssPostClient()
     {
         if (!$this->ossPostClient) {
-            $this->ossPostClient = new OssPostClient($this->accessId, $this->accessKey, $this->callback);
+            $this->ossPostClient = new OssPostClient($this->accessId, $this->accessKey);
         }
         return $this->ossPostClient;
     }

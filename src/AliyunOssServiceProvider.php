@@ -29,7 +29,7 @@ class AliyunOssServiceProvider extends ServiceProvider
     {
         $this->app->singleton(AliyunOssService::class, function ($app) {
             $config = config('aliyun-oss');
-            return new AliyunOssService($config['access_id'], $config['access_key'], $config['endpoint'], $config['callback'], $config['bucket'], $config['cdn_endpoint'], $config['img_endpoint']);
+            return new AliyunOssService($config['access_id'], $config['access_key'], $config['endpoint'], $config['bucket'], $config['cdn_endpoint'], $config['img_endpoint']);
         });
     }
 }

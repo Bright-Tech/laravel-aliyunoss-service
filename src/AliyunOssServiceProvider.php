@@ -31,5 +31,6 @@ class AliyunOssServiceProvider extends ServiceProvider
             $config = config('aliyun-oss');
             return new AliyunOssService($config['access_id'], $config['access_key'], $config['endpoint'], $config['bucket'], $config['cdn_endpoint'], $config['img_endpoint']);
         });
+        $this->app->alias(AliyunOssService::class, 'oss');
     }
 }

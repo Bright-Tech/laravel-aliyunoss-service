@@ -17,7 +17,7 @@ class AliyunOssServiceFacade extends Facade
      */
     protected static function getFacadeAccessor()
     {
-        return AliyunOssService::class;
+        return 'oss';
     }
 
 }

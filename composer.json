@@ -1,8 +1,14 @@
 {
     "name": "bright-tech/laravel-aliyunoss-service",
-    "description": "微信SDK laravel ",
+    "description": "阿里云OSS 的 Laravel 封装",
     "type": "sdk",
-    "keywords": ["aliyun","oss","sdk","php","laravel"],
+    "keywords": [
+        "aliyun",
+        "oss",
+        "sdk",
+        "php",
+        "laravel"
+    ],
     "license": "GNU GENERAL PUBLIC LICENSE",
     "authors": [
         {
@@ -13,11 +19,21 @@
     "require": {
         "php": ">=5.4.0",
         "illuminate/support": "5.*",
-        "bright-tech/aliyun-oss-sdk-php": "*"
+        "aliyuncs/oss-sdk-php": "~2.0"
     },
     "autoload": {
         "psr-4": {
             "bright_tech\\laravel\\aliyun_oss\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "bright_tech\\laravel\\aliyun_oss\\AliyunOssServiceProvider"
+            ],
+            "aliases": {
+                "Oss": "bright_tech\\laravel\\aliyun_oss\\AliyunOssServiceFacade"
+            }
         }
     }
 }

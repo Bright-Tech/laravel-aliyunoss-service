@@ -19,7 +19,7 @@
     "require": {
         "php": ">=5.4.0",
         "illuminate/support": "5.*",
-        "aliyuncs/oss-sdk-php": "~2.0"
+        "bright-tech/aliyun-oss-sdk-php": "*"
     },
     "autoload": {
         "psr-4": {
